@@ -6,7 +6,7 @@
 /*   By: oozkaya <oozkaya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/09 11:50:59 by oozkaya           #+#    #+#             */
-/*   Updated: 2018/02/15 23:03:22 by oozkaya          ###   ########.fr       */
+/*   Updated: 2018/03/19 16:46:46 by oozkaya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,5 +101,6 @@ char			*ft_utoa_base(uintmax_t nbr, int base);
 int				ft_max(int a, int b);
 void			*ft_realloc(void *ptr, size_t size);
 int				ft_wslen(wchar_t *str);
+int				ft_str_isdigit(char *str);
 
 #endif

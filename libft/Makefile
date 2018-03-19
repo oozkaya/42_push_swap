@@ -6,7 +6,7 @@
 #    By: oozkaya <oozkaya@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/12/15 16:48:02 by oozkaya           #+#    #+#              #
-#    Updated: 2018/03/15 18:00:40 by oozkaya          ###   ########.fr        #
+#    Updated: 2018/03/19 16:43:15 by oozkaya          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,7 +42,7 @@ SRC_BONUS = ft_lstnew.c ft_lstadd.c \
 SRC_EXTRA = ft_abs.c ft_capitalize.c ft_islower.c ft_isupper.c\
 			ft_strlwr.c ft_strupr.c ft_strnjoin.c ft_strndup.c\
 			ft_strjoinfree.c ft_strnjoinfree.c ft_strrev.c ft_itoa_base.c\
-			ft_max.c ft_realloc.c get_next_line.c ft_wslen.c
+			ft_max.c ft_realloc.c get_next_line.c ft_wslen.c ft_str_isdigit.c
 
 SRC = $(SRC_1) $(SRC_2) $(SRC_BONUS) $(SRC_EXTRA)
 

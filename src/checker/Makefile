@@ -6,7 +6,7 @@
 #    By: oozkaya <oozkaya@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/27 19:32:47 by oozkaya           #+#    #+#              #
-#    Updated: 2018/03/09 09:50:50 by oozkaya          ###   ########.fr        #
+#    Updated: 2018/03/19 16:48:36 by oozkaya          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,12 +31,14 @@ LDLIBS = -lft
 
 # Sources
 SRC_NAME =	\
-			main.c\
+			main.c
 
 SRC_BOTH =	\
 			stack_tools.c\
 			all_arg.c\
 			buffer.c\
+			stack_init_free.c\
+			main_tools.c
 
 OBJ_NAME = $(SRC_NAME:.c=.o)
 OBJ_BOTH = $(SRC_BOTH:.c=.o)

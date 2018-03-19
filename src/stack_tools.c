@@ -6,48 +6,12 @@
 /*   By: oozkaya <oozkaya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/01 12:05:22 by oozkaya           #+#    #+#             */
-/*   Updated: 2018/03/15 19:16:15 by oozkaya          ###   ########.fr       */
+/*   Updated: 2018/03/19 16:34:41 by oozkaya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include <stdio.h>
-
-t_stack *ft_stack_initialize(void)
-{
-	t_stack	*stack;
-
-	if (!(stack = malloc(sizeof(*stack)))) //protection a mettre
-		return (NULL);
-//	ft_bzero(*stack, sizeof(*stack));
-//	stack->a.nbr = 42;
-//	stack->buf = buffer_init();
-	buffer_init(&stack->buf);
-	stack->a = NULL;
-	stack->b = NULL;
-	return (stack);
-}
-
-static void	free_elem(t_elem *elem)
-{
-	t_elem	*curr;
-
-	while ((curr = elem) != NULL)
-	{
-		elem = elem->next;
-		ft_memdel((void**)&curr);
-	}
-	elem = NULL;
-}
-
-void	free_all(t_stack *stack)
-{
-	free_elem(stack->a);
-	free_elem(stack->b);
-	ft_memdel((void**)&stack->buf->str);
-	ft_memdel((void**)&stack->buf);
-	ft_memdel((void**)&stack);
-}
 
 void	ft_push_stack(t_elem **elem, int new_nbr)
 {
