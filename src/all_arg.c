@@ -6,7 +6,7 @@
 /*   By: oozkaya <oozkaya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/08 14:49:15 by oozkaya           #+#    #+#             */
-/*   Updated: 2018/03/19 13:19:52 by oozkaya          ###   ########.fr       */
+/*   Updated: 2018/03/20 14:33:35 by oozkaya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	swap_arg(t_stack **stack, char *arg, int print)
 		ft_swap_stack(&(*stack)->a);
 		if (print == 1)
 		{
-			buffer_add_str(&(*stack)->buf, "sa\n", 3);
+			add_buffer(&(*stack)->buf, "sa\n", 3);
 			////ft_putstr("sa  -> \t");
 			////print_all(*stack);
 			/*ft_putstr("PILE A :\n");
@@ -33,7 +33,7 @@ void	swap_arg(t_stack **stack, char *arg, int print)
 		ft_swap_stack(&(*stack)->b);
 		if (print == 1)
 		{
-			buffer_add_str(&(*stack)->buf, "sb\n", 3);
+			add_buffer(&(*stack)->buf, "sb\n", 3);
 			////ft_putstr("sb  -> \t");
 			////print_all(*stack);
 			/*ft_putstr("PILE A :\n");
@@ -48,7 +48,7 @@ void	swap_arg(t_stack **stack, char *arg, int print)
 		ft_swap_stack(&(*stack)->b);
 		if (print == 1)
 		{
-			buffer_add_str(&(*stack)->buf, "ss\n", 3);
+			add_buffer(&(*stack)->buf, "ss\n", 3);
 			////ft_putstr("ss  -> \t");
 			////print_all(*stack);
 			/*ft_putstr("PILE A :\n");
@@ -71,7 +71,7 @@ void	push_arg(t_stack **stack, char *arg, int print)
 		ft_push_stack(&(*stack)->a, popped_nbr);
 		if (print == 1)
 		{
-			buffer_add_str(&(*stack)->buf, "pa\n", 3);
+			add_buffer(&(*stack)->buf, "pa\n", 3);
 			////ft_putstr("pa  -> \t");
 			////print_all(*stack);
 			/*ft_putstr("PILE A :\n");
@@ -88,7 +88,7 @@ void	push_arg(t_stack **stack, char *arg, int print)
 		ft_push_stack(&(*stack)->b, popped_nbr);
 		if (print == 1)
 		{
-			buffer_add_str(&(*stack)->buf, "pb\n", 3);
+			add_buffer(&(*stack)->buf, "pb\n", 3);
 			////ft_putstr("pb  -> \t");
 			////print_all(*stack);
 			/*ft_putstr("PILE A :\n");
@@ -106,7 +106,7 @@ void	rotate_arg(t_stack **stack, char *arg, int print)
 		ft_rotate_stack(&(*stack)->a);
 		if (print == 1)
 		{
-			buffer_add_str(&(*stack)->buf, "ra\n", 3);
+			add_buffer(&(*stack)->buf, "ra\n", 3);
 			////ft_putstr("ra  -> \t");
 			////print_all(*stack);
 /*			ft_putstr("PILE A :\n");
@@ -120,7 +120,7 @@ void	rotate_arg(t_stack **stack, char *arg, int print)
 		ft_rotate_stack(&(*stack)->b);
 		if (print == 1)
 		{
-			buffer_add_str(&(*stack)->buf, "rb\n", 3);
+			add_buffer(&(*stack)->buf, "rb\n", 3);
 			////ft_putstr("rb  -> \t");
 			////print_all(*stack);
 			/*ft_putstr("PILE A :\n");
@@ -135,7 +135,7 @@ void	rotate_arg(t_stack **stack, char *arg, int print)
 		ft_rotate_stack(&(*stack)->b);
 		if (print == 1)
 		{
-			buffer_add_str(&(*stack)->buf, "rr\n", 3);
+			add_buffer(&(*stack)->buf, "rr\n", 3);
 			////ft_putstr("rr  -> \t");
 			////print_all(*stack);
 			/*ft_putstr("PILE A :\n");
@@ -153,7 +153,7 @@ void	reverse_rotate_arg(t_stack **stack, char *arg, int print)
 		ft_reverse_rotate_stack(&(*stack)->a);
 		if (print == 1)
 		{
-			buffer_add_str(&(*stack)->buf, "rra\n", 4);
+			add_buffer(&(*stack)->buf, "rra\n", 4);
 			////ft_putstr("rra -> \t");
 			////print_all(*stack);
 /*			ft_putstr("PILE A :\n");
@@ -167,7 +167,7 @@ void	reverse_rotate_arg(t_stack **stack, char *arg, int print)
 		ft_reverse_rotate_stack(&(*stack)->b);
 		if (print == 1)
 		{
-			buffer_add_str(&(*stack)->buf, "rrb\n", 4);
+			add_buffer(&(*stack)->buf, "rrb\n", 4);
 			////ft_putstr("rrb -> \t");
 			////print_all(*stack);
 			/*ft_putstr("PILE A :\n");
@@ -182,7 +182,7 @@ void	reverse_rotate_arg(t_stack **stack, char *arg, int print)
 		ft_reverse_rotate_stack(&(*stack)->b);
 		if (print == 1)
 		{
-			buffer_add_str(&(*stack)->buf, "rrr\n", 4);
+			add_buffer(&(*stack)->buf, "rrr\n", 4);
 			////ft_putstr("rrr -> \t");
 			////print_all(*stack);
 			/*ft_putstr("PILE A :\n");

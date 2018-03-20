@@ -6,12 +6,11 @@
 /*   By: oozkaya <oozkaya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/27 11:12:13 by oozkaya           #+#    #+#             */
-/*   Updated: 2018/03/19 17:07:38 by oozkaya          ###   ########.fr       */
+/*   Updated: 2018/03/20 19:45:59 by oozkaya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include <stdio.h>
 
 /*static void	ft_selectsort(t_stack **stack)
 {
@@ -122,16 +121,30 @@ static void	ft_quicksort(t_stack **stack, int n, int x)
 int			main(int ac, char **av)
 {
 	t_stack	*stack;
+	t_flags	flags;
 	int		stack_len;
+	int		start;
+	int		fd;
 
 	stack = ft_stack_initialize();
-	ft_fill_stack(&stack, ac, av);
+	start = ft_flag_checker(ac, av, &flags);
+	ft_fill_stack(&stack, ac, av, start);
 	stack_len = ft_stacklen(stack);
 	ft_quicksort(&stack, stack_len, 0);
-	write(1, stack->buf->str, stack->buf->len);
+	if (flags.f)
+	{
+		fd = open("file.txt", O_CREAT | O_WRONLY | O_TRUNC, S_IWUSR | S_IRUSR);
+		write(fd, stack->buf->str, stack->buf->len);
+		close(fd);
+	}
+	else
+		write(1, stack->buf->str, stack->buf->len);
 //	ft_putstr("A : ");
 //	afficherPile1(stack->a);
 //	ft_putchar('\n');
+//	ft_printf("flags->v = %d\n", flags.v);
+//	ft_printf("flags->f = %d\n", flags.f);
+//	ft_printf("test = %s %sred%s\n", "TEST", RED, EOC);
 	free_stack(stack);
 	return (0);
 }

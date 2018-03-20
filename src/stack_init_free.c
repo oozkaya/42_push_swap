@@ -6,19 +6,19 @@
 /*   By: oozkaya <oozkaya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/19 16:33:50 by oozkaya           #+#    #+#             */
-/*   Updated: 2018/03/19 16:35:11 by oozkaya          ###   ########.fr       */
+/*   Updated: 2018/03/20 20:54:27 by oozkaya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_stack *ft_stack_initialize(void)
+t_stack		*ft_stack_initialize(void)
 {
 	t_stack	*stack;
 
 	if (!(stack = malloc(sizeof(*stack))))
 		return (NULL);
-	buffer_init(&stack->buf);
+	init_buffer(&stack->buf);
 	stack->a = NULL;
 	stack->b = NULL;
 	return (stack);
@@ -36,7 +36,7 @@ static void	free_elem(t_elem *elem)
 	elem = NULL;
 }
 
-void	free_stack(t_stack *stack)
+void		free_stack(t_stack *stack)
 {
 	free_elem(stack->a);
 	free_elem(stack->b);

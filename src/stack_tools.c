@@ -6,7 +6,7 @@
 /*   By: oozkaya <oozkaya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/01 12:05:22 by oozkaya           #+#    #+#             */
-/*   Updated: 2018/03/19 16:34:41 by oozkaya          ###   ########.fr       */
+/*   Updated: 2018/03/20 20:52:34 by oozkaya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,39 +17,24 @@ void	ft_push_stack(t_elem **elem, int new_nbr)
 {
 	t_elem	*new;
 
-//	if (new_nbr == -1)
-//		return ;
-	if (!(new = malloc(sizeof(*new))))//protection
+	if (!(new = malloc(sizeof(*new))))
 		return ;
-//	if (*elem == NULL || new == NULL)
-//		exit(EXIT_FAILURE);
-	/*if (elem == NULL)
-	{
-		new->nbr = new_nbr;
-		new->next = NULL;
-		elem = new;
-	}*/
 	new->nbr = new_nbr;
 	new->next = *elem;
 	*elem = new;
-//	ft_putstr("OK\n");
-//	printf("elem->nbr = %d\n", (*elem)->nbr);
 }
 
 int		ft_pop_stack(t_elem **elem)
 {
-	int		popped_nbr; 
+	int		popped_nbr;
 	t_elem	*popped_elem;
 
-//	if (*elem == NULL)
-//		return (-1);
 	popped_elem = *elem;
 	popped_nbr = 0;
 	if (elem != NULL)
 	{
 		popped_nbr = popped_elem->nbr;
 		*elem = popped_elem->next;
-		//free(popped_elem);
 		ft_memdel((void**)&popped_elem);
 	}
 	return (popped_nbr);
@@ -68,19 +53,6 @@ void	ft_swap_stack(t_elem **elem)
 	(*elem)->next = to_swap;
 	to_swap->next = third;
 }
-
-/*void	ft_rotate_stacks(t_stack *stack)
-{
-	t_elem	*to_rotate;
-	int		nbr_rotate;
-
-	to_rotate = 
-	nbr_rotate = stack->first->nbr;
-	while (stack->first->next)
-		stack->first = stack->first->next;
-	stack->first->next = to_rotate;
-	to_rotate->next = NULL;
-}*/
 
 void	ft_rotate_stack(t_elem **elem)
 {
@@ -119,12 +91,9 @@ void	ft_reverse_rotate_stack(t_elem **elem)
 	before_last->next = NULL;
 }
 
-void afficherPile(t_elem *elem)
+void	afficherPile(t_elem *elem)
 {
 	t_elem	*current_elem;
-
-//	if (elem == NULL)
-//		exit(EXIT_FAILURE);
 
 	current_elem = elem;
 	while (current_elem != NULL)
@@ -135,12 +104,9 @@ void afficherPile(t_elem *elem)
 	printf("\n");
 }
 
-void afficherPile1(t_elem *elem)
+void	afficherPile1(t_elem *elem)
 {
 	t_elem	*current_elem;
-
-//	if (elem == NULL)
-//		exit(EXIT_FAILURE);
 
 	current_elem = elem;
 	while (current_elem != NULL)
@@ -157,7 +123,6 @@ void	print_all(t_stack *stack)
 	ft_putstr("A : ");
 	afficherPile1(stack->a);
 	ft_putstr("\033[00m");
-//	ft_putstr("   |||    ");
 	ft_putstr("\033[35m");
 	ft_putstr("B : ");
 	afficherPile1(stack->b);

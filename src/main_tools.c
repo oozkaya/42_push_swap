@@ -6,7 +6,7 @@
 /*   By: oozkaya <oozkaya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/19 16:28:21 by oozkaya           #+#    #+#             */
-/*   Updated: 2018/03/19 16:57:02 by oozkaya          ###   ########.fr       */
+/*   Updated: 2018/03/20 19:45:39 by oozkaya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,12 +51,12 @@ int		ft_tablen(char **tab)
 	return (i);
 }
 
-void	ft_fill_stack(t_stack **stack, int ac, char **av)
+void	ft_fill_stack(t_stack **stack, int ac, char **av, int start)
 {
 	char	**tab;
 	int		i;
 
-	while (ac > 1)
+	while (ac > start)
 	{
 		tab = ft_strsplit(av[ac - 1], ' ');
 		i = ft_tablen(tab) - 1;

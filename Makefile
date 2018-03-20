@@ -6,7 +6,7 @@
 #    By: oozkaya <oozkaya@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/20 15:20:23 by oozkaya           #+#    #+#              #
-#    Updated: 2018/02/27 20:45:55 by oozkaya          ###   ########.fr        #
+#    Updated: 2018/03/20 11:30:01 by oozkaya          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -67,7 +67,7 @@ $(NAME_CHK): libft.a
 	@ln -s $(CHK_PATH)/$@ .
 
 libft.a:
-	@make -C $(LIB_PATH) $@
+	@make -C $(LIB_PATH)
 
 clean:
 	@rm -Rf obj

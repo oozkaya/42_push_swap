@@ -6,7 +6,7 @@
 #    By: oozkaya <oozkaya@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/12/15 16:48:02 by oozkaya           #+#    #+#              #
-#    Updated: 2018/03/19 16:43:15 by oozkaya          ###   ########.fr        #
+#    Updated: 2018/03/20 19:55:14 by oozkaya          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,11 +44,18 @@ SRC_EXTRA = ft_abs.c ft_capitalize.c ft_islower.c ft_isupper.c\
 			ft_strjoinfree.c ft_strnjoinfree.c ft_strrev.c ft_itoa_base.c\
 			ft_max.c ft_realloc.c get_next_line.c ft_wslen.c ft_str_isdigit.c
 
-SRC = $(SRC_1) $(SRC_2) $(SRC_BONUS) $(SRC_EXTRA)
+SRC_PRINTF = ft_all_printf.c ft_all_printf2.c ft_all_printf3.c ft_core_printf.c\
+			 buffer.c int_arg_tools.c colors_v2.c parser.c unicode.c\
+			 d_arg.c p_x_arg.c u_o_arg.c wc_c_arg.c ws_s_arg.c
+
+SRC = $(SRC_1) $(SRC_2) $(SRC_BONUS) $(SRC_EXTRA) $(addprefix ft_printf/, $(SRC_PRINTF))
 
 OBJ_PATH = obj/
+OBJ_PATH_PRINTF = $(OBJ_PATH)ft_printf
 OBJ_NAME = $(SRC:.c=.o)
-OBJ = $(addprefix $(OBJ_PATH), $(OBJ_NAME))
+OBJ_PRINTF = $(SRC_PRINTF:.c=.o)
+OBJ = $(addprefix $(OBJ_PATH), $(OBJ_NAME))\
+	  $(addprefix $(OBJ_PATH)ft_printf/, $(OBJ_PRINTF))
 
 # **************************************************************************** #
 # SPECIALS CHARS                                                               #
@@ -93,7 +100,7 @@ BIN_DEL = "--$(LOG_CLEAR)$(LOG_YELLOW)Binary$(LOG_NOCOLOR) deletion " \
 all: $(NAME)
 
 $(NAME): obj $(OBJ)
-	@echo -e $(EMPTY_LINE)"$(LOG_UP)$(LOG_NOCOLOR) $(COUNTER) file(s) linked"
+	@echo -e $(EMPTY_LINE)"$(LOG_UP)$(LOG_NOCOLOR) $(COUNTER) file(s) linked 🔒       "
 	@ar -rc $(NAME) $(OBJ) && echo -e $(ASSEMBLING)
 	@ranlib $(NAME) && echo -e $(INDEXING)
 
@@ -105,6 +112,7 @@ $(OBJ_PATH)%.o: $(SRC_PATH)%.c
 obj:
 	@echo -e "$(TITLE)build $(NAME)$(END_TITLE)"
 	@mkdir -p $(OBJ_PATH)
+	@mkdir -p $(OBJ_PATH_PRINTF)
 	@echo -e $(LINKING)
 
 clean:

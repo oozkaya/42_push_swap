@@ -6,7 +6,7 @@
 #    By: oozkaya <oozkaya@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/27 19:32:47 by oozkaya           #+#    #+#              #
-#    Updated: 2018/03/19 16:48:36 by oozkaya          ###   ########.fr        #
+#    Updated: 2018/03/20 19:47:32 by oozkaya          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ SRC_BOTH_PATH = .././
 OBJ_PATH = ../../obj/$(NAME)/
 LIB_PATH = ../../libft/
 INC_PATH = ../../includes/ \
-		   $(LIB_PATH)/includes/
+		   $(LIB_PATH)/includes/ \
 
 # Includes & libraries
 CPPFLAGS = $(addprefix -I ,$(INC_PATH))
@@ -38,7 +38,8 @@ SRC_BOTH =	\
 			all_arg.c\
 			buffer.c\
 			stack_init_free.c\
-			main_tools.c
+			main_tools.c\
+			bonus.c
 
 OBJ_NAME = $(SRC_NAME:.c=.o)
 OBJ_BOTH = $(SRC_BOTH:.c=.o)
@@ -109,7 +110,7 @@ $(NAME): $(OBJ_PATH) $(OBJ)
 	@echo -e $(ASSEMBLING)
 
 libft.a:
-	@make -C $(LIB_PATH) $@
+	@make -C $(LIB_PATH)
 
 $(OBJ_PATH):
 	@echo -e "$(TITLE)build $(NAME)$(END_TITLE)"
