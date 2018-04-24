@@ -6,7 +6,7 @@
 /*   By: oozkaya <oozkaya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/08 14:49:15 by oozkaya           #+#    #+#             */
-/*   Updated: 2018/04/19 21:22:47 by oozkaya          ###   ########.fr       */
+/*   Updated: 2018/04/24 17:46:10 by oozkaya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ void	swap_arg(t_stack **stack, char *arg, int print)
 	if (ft_strequ("sa", arg))
 	{
 		ft_swap_stack(&(*stack)->a);
+	//	refresh_index(&(*stack)->a);
+	//	refresh_index(&(*stack)->b);
 		if (print == 1)
 		{
 			add_buffer(&(*stack)->buf, "sa\n", 3);
@@ -31,6 +33,8 @@ void	swap_arg(t_stack **stack, char *arg, int print)
 	else if (ft_strequ("sb", arg))
 	{
 		ft_swap_stack(&(*stack)->b);
+	//	refresh_index(&(*stack)->a);
+	//	refresh_index(&(*stack)->b);
 		if (print == 1)
 		{
 			add_buffer(&(*stack)->buf, "sb\n", 3);
@@ -46,6 +50,8 @@ void	swap_arg(t_stack **stack, char *arg, int print)
 	{
 		ft_swap_stack(&(*stack)->a);
 		ft_swap_stack(&(*stack)->b);
+	//	refresh_index(&(*stack)->a);
+	//	refresh_index(&(*stack)->b);
 		if (print == 1)
 		{
 			add_buffer(&(*stack)->buf, "ss\n", 3);
@@ -57,6 +63,8 @@ void	swap_arg(t_stack **stack, char *arg, int print)
 			afficherPile((*stack)->b);*/
 		}
 	}
+	refresh_index(&(*stack)->a);
+	refresh_index(&(*stack)->b);
 }
 
 void	push_arg(t_stack **stack, char *arg, int print)
@@ -69,6 +77,8 @@ void	push_arg(t_stack **stack, char *arg, int print)
 			return ;
 		popped_nbr = ft_pop_stack(&(*stack)->b);
 		ft_push_stack(&(*stack)->a, popped_nbr);
+	//	refresh_index(&(*stack)->a);
+	//	refresh_index(&(*stack)->b);
 		if (print == 1)
 		{
 			add_buffer(&(*stack)->buf, "pa\n", 3);
@@ -86,6 +96,8 @@ void	push_arg(t_stack **stack, char *arg, int print)
 			return ;
 		popped_nbr = ft_pop_stack(&(*stack)->a);
 		ft_push_stack(&(*stack)->b, popped_nbr);
+	//	refresh_index(&(*stack)->a);
+	//	refresh_index(&(*stack)->b);
 		if (print == 1)
 		{
 			add_buffer(&(*stack)->buf, "pb\n", 3);
@@ -97,6 +109,8 @@ void	push_arg(t_stack **stack, char *arg, int print)
 			afficherPile((*stack)->b);*/
 		}
 	}
+	refresh_index(&(*stack)->a);
+	refresh_index(&(*stack)->b);
 }
 
 void	rotate_arg(t_stack **stack, char *arg, int print)
@@ -104,6 +118,8 @@ void	rotate_arg(t_stack **stack, char *arg, int print)
 	if (ft_strequ("ra", arg))
 	{
 		ft_rotate_stack(&(*stack)->a);
+	//	refresh_index(&(*stack)->a);
+	//	refresh_index(&(*stack)->b);
 		if (print == 1)
 		{
 			add_buffer(&(*stack)->buf, "ra\n", 3);
@@ -118,6 +134,8 @@ void	rotate_arg(t_stack **stack, char *arg, int print)
 	else if (ft_strequ("rb", arg))
 	{
 		ft_rotate_stack(&(*stack)->b);
+	//	refresh_index(&(*stack)->a);
+	//	refresh_index(&(*stack)->b);
 		if (print == 1)
 		{
 			add_buffer(&(*stack)->buf, "rb\n", 3);
@@ -133,6 +151,8 @@ void	rotate_arg(t_stack **stack, char *arg, int print)
 	{
 		ft_rotate_stack(&(*stack)->a);
 		ft_rotate_stack(&(*stack)->b);
+	//	refresh_index(&(*stack)->a);
+	//	refresh_index(&(*stack)->b);
 		if (print == 1)
 		{
 			add_buffer(&(*stack)->buf, "rr\n", 3);
@@ -144,6 +164,8 @@ void	rotate_arg(t_stack **stack, char *arg, int print)
 			afficherPile((*stack)->b);*/
 		}
 	}
+	refresh_index(&(*stack)->a);
+	refresh_index(&(*stack)->b);
 }
 
 void	reverse_rotate_arg(t_stack **stack, char *arg, int print)
@@ -151,6 +173,8 @@ void	reverse_rotate_arg(t_stack **stack, char *arg, int print)
 	if (ft_strequ("rra", arg))
 	{
 		ft_reverse_rotate_stack(&(*stack)->a);
+	//	refresh_index(&(*stack)->a);
+	//	refresh_index(&(*stack)->b);
 		if (print == 1)
 		{
 			add_buffer(&(*stack)->buf, "rra\n", 4);
@@ -165,6 +189,8 @@ void	reverse_rotate_arg(t_stack **stack, char *arg, int print)
 	else if (ft_strequ("rrb", arg))
 	{
 		ft_reverse_rotate_stack(&(*stack)->b);
+	//	refresh_index(&(*stack)->a);
+	//	refresh_index(&(*stack)->b);
 		if (print == 1)
 		{
 			add_buffer(&(*stack)->buf, "rrb\n", 4);
@@ -180,6 +206,8 @@ void	reverse_rotate_arg(t_stack **stack, char *arg, int print)
 	{
 		ft_reverse_rotate_stack(&(*stack)->a);
 		ft_reverse_rotate_stack(&(*stack)->b);
+		//refresh_index(&(*stack)->a);
+		//refresh_index(&(*stack)->b);
 		if (print == 1)
 		{
 			add_buffer(&(*stack)->buf, "rrr\n", 4);
@@ -191,4 +219,6 @@ void	reverse_rotate_arg(t_stack **stack, char *arg, int print)
 			afficherPile((*stack)->b);*/
 		}
 	}
+	refresh_index(&(*stack)->a);
+	refresh_index(&(*stack)->b);
 }

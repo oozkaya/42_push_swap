@@ -6,7 +6,7 @@
 #    By: oozkaya <oozkaya@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/27 19:32:47 by oozkaya           #+#    #+#              #
-#    Updated: 2018/03/20 19:47:48 by oozkaya          ###   ########.fr        #
+#    Updated: 2018/04/24 10:58:04 by oozkaya          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,6 +34,14 @@ SRC_NAME =	\
 			main.c\
 
 SRC_BOTH =	\
+			insertion_sort.c\
+			\
+			low_range_quicksort.c\
+			low_range_selectsort.c\
+			high_range_selectsort.c\
+			find_median.c\
+			selectsort_tools.c\
+			\
 			stack_tools.c\
 			all_arg.c\
 			buffer.c\

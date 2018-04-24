@@ -6,7 +6,7 @@
 /*   By: oozkaya <oozkaya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/27 11:24:37 by oozkaya           #+#    #+#             */
-/*   Updated: 2018/04/19 11:09:20 by oozkaya          ###   ########.fr       */
+/*   Updated: 2018/04/24 15:07:22 by oozkaya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,9 @@
 typedef struct		s_elem
 {
 	int				nbr;
+	int				index;
+	int				r;
+	int				rr;
 	struct s_elem	*next;
 }					t_elem;
 
@@ -34,7 +37,6 @@ typedef struct		s_stack
 	t_elem		*a;
 	t_elem		*b;
 	t_buff		*buf;
-	int			a_is_empty;
 }					t_stack;
 
 typedef struct	s_op
@@ -77,6 +79,19 @@ int		stack_is_sorted(t_elem *elem);
 int		stack_is_sorted2(t_elem *elem, int n);
 int		ft_stacklen(t_elem *elem);
 int		ft_tablen(char **tab);
+void	refresh_index(t_elem **elem);
 void	ft_fill_stack(t_stack **stack, int ac, char **av, int start);
+
+
+void	low_range_quicksort(t_stack **stack, int size);
+void	low_range_selectsort(t_stack **stack, int size);
+void	high_range_selectsort(t_stack **stack, int size);
+
+void	insertion_sort(t_stack **stack);
+
+int		find_median(t_stack *stack, int size, char c);
+
+int		find_max(t_stack *stack, int size);
+int		find_next_max(t_stack *stack, int max, int check);
 
 #endif

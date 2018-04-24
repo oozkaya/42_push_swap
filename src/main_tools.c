@@ -6,7 +6,7 @@
 /*   By: oozkaya <oozkaya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/19 16:28:21 by oozkaya           #+#    #+#             */
-/*   Updated: 2018/04/11 12:13:03 by oozkaya          ###   ########.fr       */
+/*   Updated: 2018/04/24 15:32:35 by oozkaya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,21 @@ int		ft_tablen(char **tab)
 	return (i);
 }
 
+void	refresh_index(t_elem **elem)
+{
+	int		index;
+	t_elem	*tmp;
+
+	index = 0;
+	tmp = *elem;
+	while (tmp)
+	{
+		tmp->index = index;
+		tmp = tmp->next;
+		index++;
+	}
+}
+
 void	ft_fill_stack(t_stack **stack, int ac, char **av, int start)
 {
 	char	**tab;
@@ -94,4 +109,5 @@ void	ft_fill_stack(t_stack **stack, int ac, char **av, int start)
 		ft_memdel((void**)&tab);
 		ac--;
 	}
+	refresh_index(&(*stack)->a);
 }

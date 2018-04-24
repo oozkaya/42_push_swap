@@ -6,7 +6,7 @@
 /*   By: oozkaya <oozkaya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/01 12:05:22 by oozkaya           #+#    #+#             */
-/*   Updated: 2018/04/11 20:14:48 by oozkaya          ###   ########.fr       */
+/*   Updated: 2018/04/24 15:33:09 by oozkaya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,6 +119,16 @@ void	afficherPile1(t_elem *elem)
 		ft_putstr(", ");
 		current_elem = current_elem->next;
 	}
+	ft_putchar('\n');
+	current_elem = elem;
+	ft_putstr("Index : ");
+	while (current_elem != NULL)
+	{
+		ft_putnbr(current_elem->index);
+		ft_putstr(", ");
+		current_elem = current_elem->next;
+	}
+	//ft_putchar('\n');
 }
 
 void	print_all(t_stack *stack)
@@ -128,6 +138,7 @@ void	print_all(t_stack *stack)
 	afficherPile1(stack->a);
 	ft_putstr("\033[00m");
 	ft_putstr("\033[35m");
+	ft_putchar('\n');
 	ft_putstr("B : ");
 	afficherPile1(stack->b);
 	ft_putstr("\033[00m");
