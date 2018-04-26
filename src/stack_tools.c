@@ -6,7 +6,7 @@
 /*   By: oozkaya <oozkaya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/01 12:05:22 by oozkaya           #+#    #+#             */
-/*   Updated: 2018/04/24 15:33:09 by oozkaya          ###   ########.fr       */
+/*   Updated: 2018/04/26 17:18:59 by oozkaya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,58 +89,4 @@ void	ft_reverse_rotate_stack(t_elem **elem)
 	to_rotate->next = *elem;
 	*elem = to_rotate;
 	before_last->next = NULL;
-}
-
-void	afficherPile(t_elem *elem)
-{
-	t_elem	*current_elem;
-
-	current_elem = elem;
-	while (current_elem != NULL)
-	{
-		printf("%d\n", current_elem->nbr);
-		current_elem = current_elem->next;
-	}
-	printf("\n");
-}
-
-void	afficherPile1(t_elem *elem)
-{
-	t_elem	*current_elem;
-
-	current_elem = elem;
-	while (current_elem != NULL)
-	{
-//		if (current_elem->next && current_elem->nbr > current_elem->next->nbr)
-//			ft_putstr("\033[31m");
-		ft_putnbr(current_elem->nbr);
-//		if (current_elem->next && current_elem->nbr > current_elem->next->nbr)
-//			ft_putstr("\033[00m");
-		ft_putstr(", ");
-		current_elem = current_elem->next;
-	}
-	ft_putchar('\n');
-	current_elem = elem;
-	ft_putstr("Index : ");
-	while (current_elem != NULL)
-	{
-		ft_putnbr(current_elem->index);
-		ft_putstr(", ");
-		current_elem = current_elem->next;
-	}
-	//ft_putchar('\n');
-}
-
-void	print_all(t_stack *stack)
-{
-	ft_putstr("\033[36m");
-	ft_putstr("A : ");
-	afficherPile1(stack->a);
-	ft_putstr("\033[00m");
-	ft_putstr("\033[35m");
-	ft_putchar('\n');
-	ft_putstr("B : ");
-	afficherPile1(stack->b);
-	ft_putstr("\033[00m");
-	ft_putchar('\n');
 }

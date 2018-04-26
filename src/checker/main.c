@@ -6,7 +6,7 @@
 /*   By: oozkaya <oozkaya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/27 11:12:23 by oozkaya           #+#    #+#             */
-/*   Updated: 2018/03/20 20:55:03 by oozkaya          ###   ########.fr       */
+/*   Updated: 2018/04/26 20:21:25 by oozkaya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,12 @@ static void	ft_instruction_parser(t_stack **stack, const t_op *tab_op,
 	char	*line;
 	int		i;
 	int		fd;
+	int		moves;
 
+	fd = 0;
 	if (flags->f)
 		fd = open("file.txt", O_RDONLY);
-	else
-		fd = 0;
+	moves = 0;
 	while (get_next_line(fd, &line) > 0)
 	{
 		i = 0;
@@ -33,7 +34,10 @@ static void	ft_instruction_parser(t_stack **stack, const t_op *tab_op,
 			i++;
 		}
 		free(line);
+		moves++;
 	}
+	if (flags->l)
+		ft_putnbr(moves);
 	if (flags->f)
 		close(fd);
 }
@@ -57,19 +61,14 @@ int			main(int ac, char **av)
 	t_flags				flags;
 
 	stack = ft_stack_initialize();
-	ft_fill_stack(&stack, ac, av, ft_flag_checker(ac, av, &flags));
-//	ft_putstr("PILE A :\n");
-//	afficherPile(stack->a);
-//	ft_putstr("PILE B :\n");
-//	afficherPile(stack->b);
+	fill_stack(&stack, ac, av, ft_flag_checker(ac, av, &flags));
 	ft_instruction_parser(&stack, tab_op, &flags);
 	if (stack_is_sorted(stack->a))
 		ft_putstr("OK\n");
 	else
 		ft_putstr("KO\n");
-//	ft_putstr("PILE A :\n");
-//	afficherPile(stack->a);
-//	ft_putstr("PILE B :\n");
-//	afficherPile(stack->b);
+	if (flags.v)
+		ft_display();
+	free_stack(stack);
 	return (0);
 }

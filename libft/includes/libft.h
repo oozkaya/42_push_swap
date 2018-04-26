@@ -6,7 +6,7 @@
 /*   By: oozkaya <oozkaya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/09 11:50:59 by oozkaya           #+#    #+#             */
-/*   Updated: 2018/03/20 14:26:47 by oozkaya          ###   ########.fr       */
+/*   Updated: 2018/04/26 15:37:39 by oozkaya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ char			*ft_strstr(const char *str, const char *to_find);
 char			*ft_strnstr(const char *str, const char *to_find, size_t len);
 int				ft_strcmp(const char *s1, const char *s2);
 int				ft_strncmp(const char *s1, const char *s2, size_t n);
-int				ft_atoi(const char *str);
+intmax_t		ft_atoi(const char *str);
 int				ft_isalpha(int c);
 int				ft_isdigit(int c);
 int				ft_isalnum(int c);

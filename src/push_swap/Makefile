@@ -6,7 +6,7 @@
 #    By: oozkaya <oozkaya@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/27 19:32:47 by oozkaya           #+#    #+#              #
-#    Updated: 2018/04/24 10:58:04 by oozkaya          ###   ########.fr        #
+#    Updated: 2018/04/26 21:03:34 by oozkaya          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,23 +25,24 @@ INC_PATH = ../../includes/ \
 		   $(LIB_PATH)/includes/
 
 # Includes & libraries
-CPPFLAGS = $(addprefix -I ,$(INC_PATH))
-LDFLAGS = -L $(LIB_PATH)
+SDL2_CFLAGS = $(shell sdl2-config --cflags)
+SDL2_LIBS = $(shell sdl2-config --libs)
+CPPFLAGS = $(addprefix -I ,$(INC_PATH)) $(SDL2_CFLAGS)
+LDFLAGS = -L $(LIB_PATH) $(SDL2_LIBS)
 LDLIBS = -lft
 
 # Sources
 SRC_NAME =	\
 			main.c\
+			\
+			ft_insertion_sort.c\
+			finders.c\
+			\
+			ft_quicksort_a2b.c\
+			find_median.c
 
 SRC_BOTH =	\
-			insertion_sort.c\
-			\
-			low_range_quicksort.c\
-			low_range_selectsort.c\
-			high_range_selectsort.c\
-			find_median.c\
-			selectsort_tools.c\
-			\
+			fill_stack.c\
 			stack_tools.c\
 			all_arg.c\
 			buffer.c\

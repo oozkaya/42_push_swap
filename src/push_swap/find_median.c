@@ -6,7 +6,7 @@
 /*   By: oozkaya <oozkaya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/20 15:52:43 by oozkaya           #+#    #+#             */
-/*   Updated: 2018/04/20 15:54:21 by oozkaya          ###   ########.fr       */
+/*   Updated: 2018/04/26 18:07:24 by oozkaya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,11 +59,9 @@ static void	ft_bubblesort(t_stack *stack, int *tab, int size, char c)
 
 int			find_median(t_stack *stack, int size, char c)
 {
-	t_elem	*tmp;
 	int		tab[size];
 	int		median;
-	
-	tmp = stack->a;
+
 	ft_bubblesort(stack, tab, size, c);
 	median = tab[size / 2];
 	return (median);

@@ -6,7 +6,7 @@
 #    By: oozkaya <oozkaya@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/20 15:20:23 by oozkaya           #+#    #+#              #
-#    Updated: 2018/03/20 11:30:01 by oozkaya          ###   ########.fr        #
+#    Updated: 2018/04/26 22:51:51 by oozkaya          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -87,7 +87,7 @@ norme:
 	@echo -e "$(TITLE)Norminette: $(NAME_SWP)$(END_TITLE)"
 	@make -C $(SWP_PATH) norme
 	@echo -e "$(TITLE)Norminette: $(NAME_CHK)$(END_TITLE)"
-	@make -C $(CHK_PATH) norme"
+	@make -C $(CHK_PATH) norme
 
 # **************************************************************************** #
 # Personal notes :                                                             #

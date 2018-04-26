@@ -3,18 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oozkaya <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: oozkaya <oozkaya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/09 14:04:47 by oozkaya           #+#    #+#             */
-/*   Updated: 2017/11/16 13:11:56 by oozkaya          ###   ########.fr       */
+/*   Updated: 2018/04/26 17:59:54 by oozkaya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int		ft_atoi(const char *str)
+#include "libft.h"
+
+intmax_t	ft_atoi(const char *str)
 {
-	int				i;
-	int				signe;
-	unsigned long	res;
+	int			i;
+	int			signe;
+	intmax_t	res;
 
 	res = 0;
 	signe = 1;
