@@ -36,7 +36,6 @@ SRC_NAME =	\
 			main.c\
 			\
 			ft_insertion_sort.c\
-			finders.c\
 			\
 			ft_quicksort_a2b.c\
 			find_median.c
@@ -48,7 +47,8 @@ SRC_BOTH =	\
 			buffer.c\
 			stack_init_free.c\
 			main_tools.c\
-			bonus.c
+			bonus.c\
+			finders.c
 
 OBJ_NAME = $(SRC_NAME:.c=.o)
 OBJ_BOTH = $(SRC_BOTH:.c=.o)
@@ -114,12 +114,31 @@ BIN_DEL = "--$(LOG_CLEAR)$(LOG_YELLOW)Binary$(LOG_NOCOLOR) deletion " \
 
 all: libft.a $(NAME)
 
-$(NAME): $(OBJ_PATH) $(OBJ)
+$(NAME): setup_SDL2 $(OBJ_PATH) $(OBJ)
 	@$(CC) $(OBJ) $(LDFLAGS) $(LDLIBS) -o $(NAME)
 	@echo -e $(ASSEMBLING)
 
 libft.a:
 	@make -C $(LIB_PATH)
+
+setup_SDL2:
+	@if [ $(OS) = Darwin ]; then make SDL2_Darwin; fi;
+	@if [ $(OS) = Linux ]; then make SDL2_Linux; fi;
+
+SDL2_Darwin:
+	@if !(brew ls --versions sdl2 > /dev/null); then \
+		echo -e "$(TITLE)setup sdl2$(END_TITLE)"; \
+		brew update && brew install sdl2; \
+	fi;
+#	@sudo chown root:wheel /usr/local/bin/brew; \
+#	@sudo brew link sdl2; \
+
+SDL2_Linux:
+ifndef $(shell sdl2 --version 2>/dev/null)
+	@echo -e "$(TITLE)setup sdl2$(END_TITLE)"
+	@sudo apt-get update
+	@sudo apt-get install libsdl2-dev
+endif
 
 $(OBJ_PATH):
 	@echo -e "$(TITLE)build $(NAME)$(END_TITLE)"

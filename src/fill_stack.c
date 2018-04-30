@@ -12,8 +12,6 @@
 
 #include "push_swap.h"
 
-#include <stdio.h>
-
 static int		ft_int_max_min(char *str)
 {
 	intmax_t	nbr;

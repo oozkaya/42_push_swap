@@ -19,7 +19,11 @@ static void	ft_instruction_parser(t_stack **stack, const t_op *tab_op,
 	int		i;
 	int		fd;
 	int		moves;
+	int		max;
+	int		len;
 
+	len = ft_stacklen((*stack)->a);
+	max = ft_find_max((*stack)->a, len);
 	fd = 0;
 	if (flags->f)
 		fd = open("file.txt", O_RDONLY);
@@ -33,11 +37,15 @@ static void	ft_instruction_parser(t_stack **stack, const t_op *tab_op,
 				tab_op[i].arg(stack, line, 0);
 			i++;
 		}
+		if (flags->v)
+			ft_display(*stack, max, len);
 		free(line);
 		moves++;
 	}
 	if (flags->l)
 		ft_putnbr(moves);
+	if (flags->v)
+		SDL_Quit();
 	if (flags->f)
 		close(fd);
 }
@@ -67,8 +75,8 @@ int			main(int ac, char **av)
 		ft_putstr("OK\n");
 	else
 		ft_putstr("KO\n");
-	if (flags.v)
-		ft_display();
+	//if (flags.v)
+	//	ft_display();
 	free_stack(stack);
 	return (0);
 }

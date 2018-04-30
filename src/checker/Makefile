@@ -43,7 +43,8 @@ SRC_BOTH =	\
 			buffer.c\
 			stack_init_free.c\
 			main_tools.c\
-			bonus.c
+			bonus.c\
+			finders.c
 
 OBJ_NAME = $(SRC_NAME:.c=.o)
 OBJ_BOTH = $(SRC_BOTH:.c=.o)

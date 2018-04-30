@@ -18,14 +18,17 @@
 # define WIDTH 1000
 # define HEIGHT 800
 
+typedef struct	s_stack t_stack;
+
 typedef struct	s_sdl
 {
 	SDL_Window		*win;
 	SDL_Renderer	*ren;
+	SDL_Texture		*tex;
 	SDL_Rect		rect_a;
 	SDL_Rect		rect_b;
 }				t_sdl;
 
-void	ft_display(void);
+void	ft_display(t_stack *stack, int max, int len);
 
 #endif
