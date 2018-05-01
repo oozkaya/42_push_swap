@@ -6,7 +6,7 @@
 /*   By: oozkaya <oozkaya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/27 11:12:23 by oozkaya           #+#    #+#             */
-/*   Updated: 2018/04/26 20:21:25 by oozkaya          ###   ########.fr       */
+/*   Updated: 2018/05/01 22:07:56 by oozkaya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,22 @@ static void	ft_instruction_parser(t_stack **stack, const t_op *tab_op,
 	int		i;
 	int		fd;
 	int		moves;
-	int		max;
-	int		len;
+	t_sdl	*sdl;
+	int		run;
+//	int		max;
+	//int		len;
 
-	len = ft_stacklen((*stack)->a);
-	max = ft_find_max((*stack)->a, len);
+	ft_displayer_init(&sdl, *stack);
+//	sdl->len = ft_stacklen((*stack)->a);
+	sdl->max = ft_find_max((*stack)->a, sdl->len);
+	sdl->min = ft_find_min((*stack)->a, sdl->len);
+//	ft_printf("max = %d\n", sdl->max);
+//	ft_printf("min = %d\n", sdl->min);
+//	sdl->height = HEIGHT / sdl->len;
+	//ft_printf("heiiiight1 = %d\n", sdl->height);
+//	sdl->height = sdl->height * sdl->len;
+	//ft_printf("heiiiight2 = %d\n", sdl->height);
+	//getchar();
 	fd = 0;
 	if (flags->f)
 		fd = open("file.txt", O_RDONLY);
@@ -38,14 +49,24 @@ static void	ft_instruction_parser(t_stack **stack, const t_op *tab_op,
 			i++;
 		}
 		if (flags->v)
-			ft_display(*stack, max, len);
+			ft_display(&sdl, *stack);
 		free(line);
 		moves++;
 	}
 	if (flags->l)
 		ft_putnbr(moves);
 	if (flags->v)
+	{
+		run = 1;
+		while (run)
+		{
+			while (SDL_PollEvent(&sdl->ev) != 0)
+				if (sdl->ev.type == SDL_QUIT)
+					run = 0;
+			SDL_UpdateWindowSurface(sdl->win);
+		}
 		SDL_Quit();
+	}
 	if (flags->f)
 		close(fd);
 }
