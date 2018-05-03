@@ -6,7 +6,7 @@
 /*   By: oozkaya <oozkaya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/27 11:24:37 by oozkaya           #+#    #+#             */
-/*   Updated: 2018/04/26 20:13:14 by oozkaya          ###   ########.fr       */
+/*   Updated: 2018/05/03 17:22:14 by oozkaya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,6 @@ typedef struct	s_flags
 	int		l;
 }				t_flags;
 
-int				ft_flag_checker(int ac, char **av, t_flags *flags);
 
 /*
 ** Instructions
@@ -88,21 +87,24 @@ int				ft_stacklen(t_elem *elem);
 int				ft_tablen(char **tab);
 void			refresh_index(t_elem **elem);
 void			fill_stack(t_stack **stack, int ac, char **av, int start);
+int				ft_flag_checker(int ac, char **av, t_flags *flags);
+int				ft_reader(t_stack **stack, t_flags *flags, const t_op *tab_op);
 
 /*
 ** Solvers
 */
 void			ft_quicksort_a2b(t_stack **stack, int size);
-void			ft_insertion_sort(t_stack **stack);
+void			ft_insertion_sort(t_stack **stack, int size);
+int				low_part_sort(t_stack **stack, int size);
 
 /*
 ** Finders
 */
 int				ft_find_index(t_elem *elem, int nbr);
 int				ft_find_max(t_elem *elem, int len);
+int				ft_find_min(t_elem *elem, int len);
 int				ft_find_next(t_elem *elem, int nbr, int max);
 int				find_best_rotate(t_elem *elem, int nbr, int len);
-int				ft_find_min(t_elem *elem, int len);
 int				find_median(t_stack *stack, int size, char c);
 
 #endif

@@ -6,7 +6,7 @@
 #    By: oozkaya <oozkaya@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/27 19:32:47 by oozkaya           #+#    #+#              #
-#    Updated: 2018/04/26 21:03:34 by oozkaya          ###   ########.fr        #
+#    Updated: 2018/05/03 11:39:57 by oozkaya          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,6 +36,7 @@ SRC_NAME =	\
 			main.c\
 			\
 			ft_insertion_sort.c\
+			low_part_sort.c\
 			\
 			ft_quicksort_a2b.c\
 			find_median.c

@@ -6,7 +6,7 @@
 #    By: oozkaya <oozkaya@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/04/26 18:33:52 by oozkaya           #+#    #+#              #
-#    Updated: 2018/04/26 22:51:54 by oozkaya          ###   ########.fr        #
+#    Updated: 2018/05/03 12:25:40 by oozkaya          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,6 +34,7 @@ LDLIBS = -lft
 # Sources
 SRC_NAME =	\
 			main.c\
+			ft_reader.c\
 			displayer.c
 
 SRC_BOTH =	\

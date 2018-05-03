@@ -6,28 +6,23 @@
 /*   By: oozkaya <oozkaya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/27 11:12:23 by oozkaya           #+#    #+#             */
-/*   Updated: 2018/05/01 22:07:56 by oozkaya          ###   ########.fr       */
+/*   Updated: 2018/05/03 19:19:02 by oozkaya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
+
 static void	ft_instruction_parser(t_stack **stack, const t_op *tab_op,
 									t_flags *flags)
 {
-	char	*line;
-	int		i;
-	int		fd;
 	int		moves;
-	t_sdl	*sdl;
-	int		run;
+//	int		run;
 //	int		max;
 	//int		len;
 
-	ft_displayer_init(&sdl, *stack);
+/*	ft_displayer_init(&sdl, *stack);
 //	sdl->len = ft_stacklen((*stack)->a);
-	sdl->max = ft_find_max((*stack)->a, sdl->len);
-	sdl->min = ft_find_min((*stack)->a, sdl->len);
 //	ft_printf("max = %d\n", sdl->max);
 //	ft_printf("min = %d\n", sdl->min);
 //	sdl->height = HEIGHT / sdl->len;
@@ -42,20 +37,45 @@ static void	ft_instruction_parser(t_stack **stack, const t_op *tab_op,
 	while (get_next_line(fd, &line) > 0)
 	{
 		i = 0;
+		done = 0;
 		while (tab_op[i].op)
 		{
 			if (ft_strequ(tab_op[i].op, line))
+			{
 				tab_op[i].arg(stack, line, 0);
+				done = 1;
+			}
 			i++;
+		}
+		if (!done)
+		{
+			ft_putstr("Error\n");
+			exit(EXIT_FAILURE);
 		}
 		if (flags->v)
 			ft_display(&sdl, *stack);
 		free(line);
 		moves++;
+	}*/
+	if (!(*stack)->a)
+	{
+		free_stack(*stack);
+		exit(EXIT_FAILURE);
 	}
+		
+	moves = ft_reader(stack, flags, tab_op);
+	if (stack_is_sorted((*stack)->a))
+		ft_putstr("OK\n");
+	else
+		ft_putstr("KO\n");
 	if (flags->l)
-		ft_putnbr(moves);
-	if (flags->v)
+	{
+		if (moves <= 1)
+			ft_printf("%d move !\n", moves);
+		else
+			ft_printf("%d moves !\n", moves);
+	}
+	/*if (flags->v)
 	{
 		run = 1;
 		while (run)
@@ -65,10 +85,11 @@ static void	ft_instruction_parser(t_stack **stack, const t_op *tab_op,
 					run = 0;
 			SDL_UpdateWindowSurface(sdl->win);
 		}
+		//ft_displayer_free();
 		SDL_Quit();
-	}
-	if (flags->f)
-		close(fd);
+	}*/
+//	if (flags->f)
+//		close(fd);
 }
 
 int			main(int ac, char **av)
@@ -92,10 +113,6 @@ int			main(int ac, char **av)
 	stack = ft_stack_initialize();
 	fill_stack(&stack, ac, av, ft_flag_checker(ac, av, &flags));
 	ft_instruction_parser(&stack, tab_op, &flags);
-	if (stack_is_sorted(stack->a))
-		ft_putstr("OK\n");
-	else
-		ft_putstr("KO\n");
 	//if (flags.v)
 	//	ft_display();
 	free_stack(stack);

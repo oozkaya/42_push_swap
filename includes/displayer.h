@@ -6,7 +6,7 @@
 /*   By: oozkaya <oozkaya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/26 19:38:25 by oozkaya           #+#    #+#             */
-/*   Updated: 2018/05/01 21:51:16 by oozkaya          ###   ########.fr       */
+/*   Updated: 2018/05/03 15:38:02 by oozkaya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,11 @@ typedef struct	s_sdl
 	int				height;
 }				t_sdl;
 
-void	ft_displayer_init(t_sdl **sdl, t_stack *stack);
-void	ft_display(t_sdl **sdl, t_stack *stack);
+void			ft_displayer_init(t_sdl **sdl, t_stack *stack);
+void			ft_displayer_free(t_sdl *sdl);
+void			ft_display(t_sdl **sdl, t_stack *stack);
 
 
-int		ft_sdl_events(t_sdl **sdl);
+int				ft_sdl_events(t_sdl **sdl);
 
 #endif

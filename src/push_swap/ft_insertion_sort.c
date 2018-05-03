@@ -6,7 +6,7 @@
 /*   By: oozkaya <oozkaya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/24 10:58:18 by oozkaya           #+#    #+#             */
-/*   Updated: 2018/04/26 17:22:29 by oozkaya          ###   ########.fr       */
+/*   Updated: 2018/05/03 17:19:14 by oozkaya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ static void	handle_rotations(t_stack **stack, int next, int bestmove)
 	push_arg(stack, "pa", 1);
 }
 
-void		ft_insertion_sort(t_stack **stack)
+void		ft_insertion_sort(t_stack **stack, int size)
 {
 	int		len;
 	int		min;
@@ -91,6 +91,9 @@ void		ft_insertion_sort(t_stack **stack)
 	int		next;
 	int		bestmove;
 
+	if (low_part_sort(stack, size))
+		return ;
+	ft_quicksort_a2b(stack, size);
 	while ((*stack)->b)
 	{
 		max = ft_find_max((*stack)->a, ft_stacklen((*stack)->a));
