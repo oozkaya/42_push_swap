@@ -6,7 +6,7 @@
 /*   By: oozkaya <oozkaya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/09 09:27:31 by oozkaya           #+#    #+#             */
-/*   Updated: 2018/03/20 20:53:25 by oozkaya          ###   ########.fr       */
+/*   Updated: 2018/05/07 15:44:17 by oozkaya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 
 void	init_buffer(t_buff **buf)
 {
-	if (!(*buf = malloc(sizeof(t_buff*))))
+	if (!(*buf = malloc(sizeof(t_buff))))
 		return ;
 	if (!((*buf)->str = malloc(sizeof(char) * BUFFER_SIZE)))
 		return ;

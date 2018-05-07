@@ -6,7 +6,7 @@
 /*   By: oozkaya <oozkaya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/26 13:48:09 by oozkaya           #+#    #+#             */
-/*   Updated: 2018/05/03 19:17:47 by oozkaya          ###   ########.fr       */
+/*   Updated: 2018/05/07 17:10:35 by oozkaya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,27 +27,30 @@ static int		ft_int_max_min(char *str)
 
 static void		ft_error(void)
 {
-	ft_putstr("Error\n");
+	ft_putstr_fd("Error\n", 2);
 	exit(EXIT_FAILURE);
 }
 
-static void		ft_check_duplicates(t_elem *elem)
+static void		ft_check_duplicates(t_stack *stack)
 {
 	int		count;
 	t_elem	*tmp;
 	t_elem	*tmp2;
 
-	tmp = elem;
+	tmp = stack->a;
 	while (tmp)
 	{
-		tmp2 = elem;
+		tmp2 = stack->a;
 		count = 0;
 		while (tmp2)
 		{
 			if (tmp2->nbr == tmp->nbr)
 				count++;
 			if (count > 1)
+			{
+				free_stack(stack);
 				ft_error();
+			}
 			tmp2 = tmp2->next;
 		}
 		tmp = tmp->next;
@@ -79,6 +82,6 @@ void			fill_stack(t_stack **stack, int ac, char **av, int start)
 		ft_memdel((void**)&tab);
 		ac--;
 	}
-	ft_check_duplicates((*stack)->a);
+	ft_check_duplicates(*stack);
 	refresh_index(&(*stack)->a);
 }

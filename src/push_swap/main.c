@@ -6,7 +6,7 @@
 /*   By: oozkaya <oozkaya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/27 11:12:13 by oozkaya           #+#    #+#             */
-/*   Updated: 2018/05/03 17:58:21 by oozkaya          ###   ########.fr       */
+/*   Updated: 2018/05/07 21:03:04 by oozkaya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,21 +15,22 @@
 int			main(int ac, char **av)
 {
 	t_stack	*stack;
-	t_flags	flags;
+	int		flags;
 	int		stack_len;
 	int		start;
 	int		fd;
 
+	flags = NO_FLAG;
 	stack = ft_stack_initialize();
-	start = ft_flag_checker(ac, av, &flags);
+	start = ft_flag_checker(ac, av, &flags, stack);
 	fill_stack(&stack, ac, av, start);
 	stack_len = ft_stacklen(stack->a);
-//	ft_quicksort_a2b(&stack, stack_len);
 	if (!stack_is_sorted(stack->a))
 		ft_insertion_sort(&stack, stack_len);
-	if (flags.f)
+	if (flags & FLAG_F)
 	{
-		fd = open("file.txt", O_CREAT | O_WRONLY | O_TRUNC, S_IWUSR | S_IRUSR);
+		fd = open(ft_filename(ac, av, flags, stack), 
+					O_CREAT | O_WRONLY | O_TRUNC, S_IWUSR | S_IRUSR);
 		write(fd, stack->buf->str, stack->buf->len);
 		close(fd);
 	}

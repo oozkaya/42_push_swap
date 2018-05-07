@@ -1,24 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strndup.c                                       :+:      :+:    :+:   */
+/*   ft_strend.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oozkaya <oozkaya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/12/14 08:47:32 by oozkaya           #+#    #+#             */
-/*   Updated: 2018/05/07 18:35:19 by oozkaya          ###   ########.fr       */
+/*   Created: 2018/05/07 20:29:32 by oozkaya           #+#    #+#             */
+/*   Updated: 2018/05/07 20:44:44 by oozkaya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strndup(char const *s, size_t n)
+int		ft_strend(const char *s, const char *t)
 {
-	char	*str;
-
-	if (!(str = ft_strnew(n)))
-		return (NULL);
-	str = ft_strncpy(str, s, n);
-	str[n] = '\0';
-	return (str);
+	size_t ls;
+	size_t lt;
+	
+	ls = ft_strlen(s);
+	lt = ft_strlen(t);
+	if (ls >= lt)
+		return (0 == ft_memcmp(t, s + (ls - lt), lt));
+	return (0);
 }

@@ -6,7 +6,7 @@
 #    By: oozkaya <oozkaya@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/12/15 16:48:02 by oozkaya           #+#    #+#              #
-#    Updated: 2018/03/20 19:55:14 by oozkaya          ###   ########.fr        #
+#    Updated: 2018/05/07 20:38:21 by oozkaya          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,7 +42,8 @@ SRC_BONUS = ft_lstnew.c ft_lstadd.c \
 SRC_EXTRA = ft_abs.c ft_capitalize.c ft_islower.c ft_isupper.c\
 			ft_strlwr.c ft_strupr.c ft_strnjoin.c ft_strndup.c\
 			ft_strjoinfree.c ft_strnjoinfree.c ft_strrev.c ft_itoa_base.c\
-			ft_max.c ft_realloc.c get_next_line.c ft_wslen.c ft_str_isdigit.c
+			ft_max.c ft_realloc.c get_next_line.c ft_wslen.c ft_str_isdigit.c\
+			ft_strend.c
 
 SRC_PRINTF = ft_all_printf.c ft_all_printf2.c ft_all_printf3.c ft_core_printf.c\
 			 buffer.c int_arg_tools.c colors_v2.c parser.c unicode.c\

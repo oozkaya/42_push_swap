@@ -6,7 +6,7 @@
 /*   By: oozkaya <oozkaya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/26 19:38:25 by oozkaya           #+#    #+#             */
-/*   Updated: 2018/05/03 15:38:02 by oozkaya          ###   ########.fr       */
+/*   Updated: 2018/05/07 12:53:26 by oozkaya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,10 @@
 # define DISPLAYER_H
 
 # include "SDL.h"
+# include "push_swap.h"
 
 # define WIDTH 1920
 # define HEIGHT 1080
-
-//# define WIDTH (*sdl)->width
-//# define HEIGHT (*sdl)->height
 
 typedef struct	s_stack t_stack;
 
@@ -34,9 +32,10 @@ typedef struct	s_sdl
 	int				min;
 	int				max;
 	int				len;
+	int				play;
 	int				done;
 	int				quit;
-	int				delay;
+	Uint32			delay;
 	int				autoplay;
 	int				height;
 }				t_sdl;

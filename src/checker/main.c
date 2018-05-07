@@ -6,90 +6,37 @@
 /*   By: oozkaya <oozkaya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/27 11:12:23 by oozkaya           #+#    #+#             */
-/*   Updated: 2018/05/03 19:19:02 by oozkaya          ###   ########.fr       */
+/*   Updated: 2018/05/07 21:06:34 by oozkaya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
 
-static void	ft_instruction_parser(t_stack **stack, const t_op *tab_op,
-									t_flags *flags)
+static void	ft_instruction_parser(t_stack **stack, const t_op *tab_op, 
+												int *flags, char *filename)
 {
 	int		moves;
-//	int		run;
-//	int		max;
-	//int		len;
 
-/*	ft_displayer_init(&sdl, *stack);
-//	sdl->len = ft_stacklen((*stack)->a);
-//	ft_printf("max = %d\n", sdl->max);
-//	ft_printf("min = %d\n", sdl->min);
-//	sdl->height = HEIGHT / sdl->len;
-	//ft_printf("heiiiight1 = %d\n", sdl->height);
-//	sdl->height = sdl->height * sdl->len;
-	//ft_printf("heiiiight2 = %d\n", sdl->height);
-	//getchar();
-	fd = 0;
-	if (flags->f)
-		fd = open("file.txt", O_RDONLY);
-	moves = 0;
-	while (get_next_line(fd, &line) > 0)
-	{
-		i = 0;
-		done = 0;
-		while (tab_op[i].op)
-		{
-			if (ft_strequ(tab_op[i].op, line))
-			{
-				tab_op[i].arg(stack, line, 0);
-				done = 1;
-			}
-			i++;
-		}
-		if (!done)
-		{
-			ft_putstr("Error\n");
-			exit(EXIT_FAILURE);
-		}
-		if (flags->v)
-			ft_display(&sdl, *stack);
-		free(line);
-		moves++;
-	}*/
+	if (ft_stacklen((*stack)->a) > 1000)
+		*flags &= ~FLAG_V;
 	if (!(*stack)->a)
 	{
 		free_stack(*stack);
 		exit(EXIT_FAILURE);
 	}
-		
-	moves = ft_reader(stack, flags, tab_op);
+	moves = ft_reader(stack, *flags, tab_op, filename);
 	if (stack_is_sorted((*stack)->a))
 		ft_putstr("OK\n");
 	else
 		ft_putstr("KO\n");
-	if (flags->l)
+	if (*flags & FLAG_L)
 	{
 		if (moves <= 1)
 			ft_printf("%d move !\n", moves);
 		else
 			ft_printf("%d moves !\n", moves);
 	}
-	/*if (flags->v)
-	{
-		run = 1;
-		while (run)
-		{
-			while (SDL_PollEvent(&sdl->ev) != 0)
-				if (sdl->ev.type == SDL_QUIT)
-					run = 0;
-			SDL_UpdateWindowSurface(sdl->win);
-		}
-		//ft_displayer_free();
-		SDL_Quit();
-	}*/
-//	if (flags->f)
-//		close(fd);
 }
 
 int			main(int ac, char **av)
@@ -108,13 +55,12 @@ int			main(int ac, char **av)
 		{ NULL, NULL}
 	};
 	t_stack				*stack;
-	t_flags				flags;
+	int					flags;
 
+	flags = NO_FLAG;
 	stack = ft_stack_initialize();
-	fill_stack(&stack, ac, av, ft_flag_checker(ac, av, &flags));
-	ft_instruction_parser(&stack, tab_op, &flags);
-	//if (flags.v)
-	//	ft_display();
+	fill_stack(&stack, ac, av, ft_flag_checker(ac, av, &flags, stack));
+	ft_instruction_parser(&stack, tab_op, &flags, ft_filename(ac, av, flags, stack));
 	free_stack(stack);
 	return (0);
 }

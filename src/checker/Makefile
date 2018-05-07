@@ -6,7 +6,7 @@
 #    By: oozkaya <oozkaya@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/04/26 18:33:52 by oozkaya           #+#    #+#              #
-#    Updated: 2018/05/03 12:25:40 by oozkaya          ###   ########.fr        #
+#    Updated: 2018/05/07 16:46:20 by oozkaya          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,8 +27,8 @@ INC_PATH = ../../includes/ \
 # Includes & libraries
 SDL2_CFLAGS = $(shell sdl2-config --cflags)
 SDL2_LIBS = $(shell sdl2-config --libs)
-CPPFLAGS = $(addprefix -I,$(INC_PATH)) $(SDL2_CFLAGS) #`sdl2-config --cflags`
-LDFLAGS = -L $(LIB_PATH) $(SDL2_LIBS)#`sdl2-config --libs`
+CPPFLAGS = $(addprefix -I,$(INC_PATH)) $(SDL2_CFLAGS)
+LDFLAGS = -L $(LIB_PATH) $(SDL2_LIBS)
 LDLIBS = -lft
 
 # Sources

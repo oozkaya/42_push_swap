@@ -6,7 +6,7 @@
 /*   By: oozkaya <oozkaya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/20 19:44:56 by oozkaya           #+#    #+#             */
-/*   Updated: 2018/04/26 18:59:14 by oozkaya          ###   ########.fr       */
+/*   Updated: 2018/05/07 21:08:10 by oozkaya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,41 +15,60 @@
 static void	ft_usage(void)
 {
 	ft_putstr("Usage: ./push_swap [options] [arg1] [arg2] ...\n");
-	ft_putstr("Options : -f to write on a file\n");
+	ft_putstr("Options : -f [filename] to write on a file\n");
 	ft_putstr("\n\nUsage: ./checker [options] [arg1] [arg2] ...\n");
 	ft_putstr("Options : -v to display the moves \n");
 	ft_putstr("\t  -c to display the last move\n");
-	ft_putstr("\t  -f to read on a file\n");
+	ft_putstr("\t  -f [filename] to read on a file\n");
 }
 
-static void	ft_flag_parse(char *str, t_flags *flags)
+char	*ft_filename(int ac, char **av, int flags, t_stack *stack)
 {
 	int		i;
 
-	flags->v = 0;
-	flags->c = 0;
-	flags->f = 0;
+	if (flags & FLAG_F)
+	{
+		i = 1;
+		while (i < ac)
+		{
+			if (ft_strend(av[i], ".txt"))
+				return (av[i]);
+			i++;
+		}
+	}
+	ft_usage();
+	free_stack(stack);
+	exit(EXIT_FAILURE);
+	return (NULL);
+}
+
+static void	ft_flag_parse(char *str, int *flags, t_stack *stack)
+{
+	int		i;
+
+
 	i = 1;
 	while (str[i] != '\0')
 	{
 		if (str[i] == 'v')
-			flags->v = 1;
+			*flags |= FLAG_V;
 		else if (str[i] == 'c')
-			flags->c = 1;
+			*flags |= FLAG_C;
 		else if (str[i] == 'f')
-			flags->f = 1;
+			*flags |= FLAG_F;
 		else if (str[i] == 'l')
-			flags->l = 1;
+			*flags |= FLAG_L;
 		else
 		{
 			ft_usage();
+			free_stack(stack);
 			exit(EXIT_FAILURE);
 		}
 		i++;
 	}
 }
 
-int			ft_flag_checker(int ac, char **av, t_flags *flags)
+int			ft_flag_checker(int ac, char **av, int *flags, t_stack *stack)
 {
 	int		i;
 
@@ -58,9 +77,11 @@ int			ft_flag_checker(int ac, char **av, t_flags *flags)
 	{
 		if (av[i][0] == '-' && !ft_isdigit(av[i][1]))
 		{
-			ft_flag_parse(av[i], flags);
+			ft_flag_parse(av[i], flags, stack);
 			i++;
 		}
+		else if (*flags & FLAG_F)
+			return (i + 1);
 		else
 			return (i);
 	}

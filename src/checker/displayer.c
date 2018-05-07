@@ -6,7 +6,7 @@
 /*   By: oozkaya <oozkaya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/26 20:12:42 by oozkaya           #+#    #+#             */
-/*   Updated: 2018/05/03 20:03:56 by oozkaya          ###   ########.fr       */
+/*   Updated: 2018/05/07 16:46:48 by oozkaya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ void	ft_displayer_init(t_sdl **sdl, t_stack *stack)
 		return ;
 	}
 	(*sdl)->quit = 0;
+	(*sdl)->play = 0;
 	(*sdl)->len = ft_stacklen(stack->a);
 	(*sdl)->height = HEIGHT / (*sdl)->len;
 	(*sdl)->height = (*sdl)->height * (*sdl)->len;
@@ -131,8 +132,8 @@ static void ft_display_stacks(t_sdl **sdl, t_stack *stack, char c)
 	{
 		//if ((stick.w = tmp->nbr * (WIDTH / 2) / ((*sdl)->max - (*sdl)->min)) == 0)
 			//stick.w = 0.2 * (WIDTH / 2) / ((*sdl)->max - (*sdl)->min);
-		stick.w = (WIDTH / 2) * (ft_abs(tmp->nbr) + 1) / (*sdl)->max;
-//		stick.w = (WIDTH / 2) * (ft_abs(tmp->nbr) + 1) / ((*sdl)->max - (*sdl)->min);
+//		stick.w = (WIDTH / 2) * (ft_abs(tmp->nbr) + 1) / (*sdl)->max;
+		stick.w = (WIDTH / 2) * (ft_abs(tmp->nbr) + 1) / ((*sdl)->max - (*sdl)->min);
 //		ft_printf("1s1111sssssstick.w = %d et stick.h = %d\n", stick.w, stick.h);
 	//ft_putstr("OKKKKKKK\n");
 		/*if (tmp->nbr == (*sdl)->min)
@@ -140,10 +141,10 @@ static void ft_display_stacks(t_sdl **sdl, t_stack *stack, char c)
 			ft_printf("miiiiiiiin = stick.w = %d et stick.h = %d\n", stick.w, stick.h);
 			//getchar();
 		}*/
-		if ((stick.w -= ((WIDTH / 2) * 1 / (*sdl)->max)) == 0)//(*sdl)->max)) == 0)
-			stick.w = 0.2 * (WIDTH / 2) / (*sdl)->max;
-//		if ((stick.w -= ((WIDTH / 2) * 1 / ((*sdl)->max - (*sdl)->min))) == 0)//(*sdl)->max)) == 0)
-//			stick.w = 0.2 * (WIDTH / 2) / ((*sdl)->max - (*sdl)->min);
+//		if ((stick.w -= ((WIDTH / 2) * 1 / (*sdl)->max)) == 0)//(*sdl)->max)) == 0)
+//			stick.w = 0.2 * (WIDTH / 2) / (*sdl)->max;
+		if ((stick.w -= ((WIDTH / 2) * 1 / ft_abs((*sdl)->max - (*sdl)->min))) == 0)//(*sdl)->max)) == 0)
+			stick.w = 0.2 * (WIDTH / 2) / ((*sdl)->max - (*sdl)->min);
 		/*if (tmp->nbr == (*sdl)->min)
 		{
 			ft_printf("miiiiiiiin = stick.w = %d et stick.h = %d\n", stick.w, stick.h);
@@ -167,42 +168,26 @@ static void ft_display_stacks(t_sdl **sdl, t_stack *stack, char c)
 	}
 }
 
-static Uint32	getdelay(Uint32 scancode, int *autoplay, Uint32 orig)
+static int	ft_delay(t_sdl **sdl)
 {
-	Uint32		*vtab;
-	int			buf;
-
-	buf = *autoplay;
-	vtab = (Uint32[9]){1000, 200, 100, 75, 50, 25, 15, 5, 1};
-	*autoplay = 1;
-	if (SDL_SCANCODE_KP_1 <= scancode && scancode <= SDL_SCANCODE_KP_9)
-		return (vtab[scancode - SDL_SCANCODE_KP_1]);
-	if (scancode == SDL_SCANCODE_SPACE)
-		return (0);
-	*autoplay = buf;
-	return (orig);
+	if ((*sdl)->ev.key.keysym.scancode == SDL_SCANCODE_KP_1)
+		return (100);
+	if ((*sdl)->ev.key.keysym.scancode == SDL_SCANCODE_KP_2)
+		return (30);
+	if ((*sdl)->ev.key.keysym.scancode == SDL_SCANCODE_KP_3)
+		return (2);
+	return (30);
 }
-
 
 void	ft_display(t_sdl **sdl, t_stack *stack)
 {
 	int		run;
-//	t_sdl	*sdl;
 
-	//ft_displayer_init(&sdl);
-//	SDL_SetRenderDrawColor(sdl->ren, 255, 0, 0, 255);
 	SDL_RenderClear((*sdl)->ren);
 	ft_window_background(sdl);
 	ft_display_stacks(sdl, stack, 'a');
 	ft_display_stacks(sdl, stack, 'b');
-//	SDL_SetRenderTarget(sdl->ren, NULL);
-//	SDL_RenderCopy(sdl->ren, sdl->tex, NULL, NULL);
-	//ft_printf("h = %d\n", (*sdl)->height);
-	//ft_printf("w = %d\n", WIDTH);
 	SDL_RenderPresent((*sdl)->ren);
-	//ft_events();
-	//if ((*sdl)->quit)
-	//{
 	run = 0;
 	while (!run && !(*sdl)->quit)
 	{
@@ -210,32 +195,35 @@ void	ft_display(t_sdl **sdl, t_stack *stack)
 		{
 			if ((*sdl)->ev.type == SDL_KEYDOWN)
 			{
-				if ((*sdl)->ev.key.keysym.scancode == SDL_SCANCODE_KP_0)
-					(*sdl)->autoplay = 0;
 				if ((*sdl)->ev.key.keysym.scancode == SDL_SCANCODE_RIGHT)
 					run = 1;
 				(*sdl)->quit |= (*sdl)->ev.key.keysym.scancode
 							== SDL_SCANCODE_ESCAPE || SDL_QuitRequested();
-				//if (event.key.keysym.scancode == SDL_SCANCODE_KP_0)
-				//	env->autoplay = 0;
-				(*sdl)->delay = getdelay((*sdl)->ev.key.keysym.scancode,
-										&(*sdl)->autoplay, (*sdl)->delay);
-				}
-			if ((*sdl)->ev.type == SDL_QUIT)
-			{
-				(*sdl)->quit = 1;
-				//run = 0;
+				(*sdl)->delay = ft_delay(sdl);
+				if ((*sdl)->ev.key.keysym.scancode == SDL_SCANCODE_SPACE 
+						&& (*sdl)->play)
+					(*sdl)->play = 0;
+				if ((*sdl)->ev.key.keysym.scancode == SDL_SCANCODE_KP_ENTER 
+						&& !(*sdl)->play)
+					(*sdl)->play = 1;
 			}
-			run |= ((*sdl)->autoplay || (*sdl)->quit);
+			if ((*sdl)->ev.type == SDL_QUIT)
+				(*sdl)->quit = 1;
 		}
+		run |= ((*sdl)->play || (*sdl)->quit);
 		SDL_UpdateWindowSurface((*sdl)->win);
 	}
-	//}
-	SDL_Delay(20);
-		//SDL_Delay(4000);
-	//SDL_DestroyRenderer(sdl->ren);
-	//SDL_DestroyWindow(sdl->win);
-//	SDL_Quit();
+	SDL_Delay((*sdl)->delay);
+	if (stack_is_sorted(stack->a) && !stack->b)
+	{
+		while(SDL_WaitEvent(&(*sdl)->ev) != 0 && !(*sdl)->quit)
+		{
+			(*sdl)->quit |= (*sdl)->ev.key.keysym.scancode
+						== SDL_SCANCODE_ESCAPE || SDL_QuitRequested();
+			if ((*sdl)->ev.type == SDL_QUIT)
+				(*sdl)->quit = 1;
+		}
+	}
 }
 
 void	ft_displayer_free(t_sdl *sdl)
