@@ -15,11 +15,11 @@
 static void	ft_usage(void)
 {
 	ft_putstr("Usage: ./push_swap [options] [arg1] [arg2] ...\n");
-	ft_putstr("Options : -f [filename] to write on a file\n");
+	ft_putstr("Options : -f [filename.txt] to write on a file\n");
 	ft_putstr("\n\nUsage: ./checker [options] [arg1] [arg2] ...\n");
 	ft_putstr("Options : -v to display the moves \n");
 	ft_putstr("\t  -c to display the last move\n");
-	ft_putstr("\t  -f [filename] to read on a file\n");
+	ft_putstr("\t  -f [filename.txt] to read on a file\n");
 }
 
 char	*ft_filename(int ac, char **av, int flags, t_stack *stack)
@@ -35,10 +35,10 @@ char	*ft_filename(int ac, char **av, int flags, t_stack *stack)
 				return (av[i]);
 			i++;
 		}
+		ft_usage();
+		free_stack(stack);
+		exit(EXIT_FAILURE);
 	}
-	ft_usage();
-	free_stack(stack);
-	exit(EXIT_FAILURE);
 	return (NULL);
 }
 
@@ -81,7 +81,11 @@ int			ft_flag_checker(int ac, char **av, int *flags, t_stack *stack)
 			i++;
 		}
 		else if (*flags & FLAG_F)
+		{
+			if (!ft_strend(av[i], ".txt"))
+				return (i);
 			return (i + 1);
+		}
 		else
 			return (i);
 	}

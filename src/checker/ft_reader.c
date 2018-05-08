@@ -40,7 +40,7 @@ static void	ft_reader_checker(t_stack **stack, const t_op *tab_op, char *line)
 		ft_error(*stack, line);
 }
 
-static int	ft_flag_c(char *line)
+//static int	ft_flag_c(char *line)
 
 int			ft_reader(t_stack **stack, int flags, const t_op *tab_op,
 															char *filename)

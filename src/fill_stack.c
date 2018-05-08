@@ -25,9 +25,11 @@ static int		ft_int_max_min(char *str)
 	return (1);
 }
 
-static void		ft_error(void)
+static void		ft_error(t_stack *stack, int choice)
 {
-	ft_putstr_fd("Error\n", 2);
+	free_stack(stack);
+	if (choice == 2)
+		ft_putstr_fd("Error\n", 2);
 	exit(EXIT_FAILURE);
 }
 
@@ -37,6 +39,8 @@ static void		ft_check_duplicates(t_stack *stack)
 	t_elem	*tmp;
 	t_elem	*tmp2;
 
+	if (!stack->a)
+		ft_error(stack, 1);
 	tmp = stack->a;
 	while (tmp)
 	{
@@ -47,10 +51,7 @@ static void		ft_check_duplicates(t_stack *stack)
 			if (tmp2->nbr == tmp->nbr)
 				count++;
 			if (count > 1)
-			{
-				free_stack(stack);
-				ft_error();
-			}
+				ft_error(stack, 2);
 			tmp2 = tmp2->next;
 		}
 		tmp = tmp->next;
@@ -72,8 +73,7 @@ void			fill_stack(t_stack **stack, int ac, char **av, int start)
 			{
 				ft_memdel((void**)&tab[i]);
 				ft_memdel((void**)&tab);
-				free_stack(*stack);
-				ft_error();
+				ft_error(*stack, 2);
 			}
 			ft_push_stack(&(*stack)->a, ft_atoi(tab[i]));
 			ft_memdel((void**)&tab[i]);
