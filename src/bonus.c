@@ -6,11 +6,28 @@
 /*   By: oozkaya <oozkaya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/20 19:44:56 by oozkaya           #+#    #+#             */
-/*   Updated: 2018/05/07 21:08:10 by oozkaya          ###   ########.fr       */
+/*   Updated: 2018/05/10 12:20:08 by oozkaya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+void		ft_flag_c(int flags, char *line, int *moves)
+{
+	if (flags & FLAG_C)
+	{
+		ft_putstr("\033[30m");
+		ft_putstr("\033[41m");
+		ft_putstr(" Moves ");
+		ft_putstr("\033[0m");
+		ft_putstr(" -> ");
+		ft_putstr("\033[31m");
+		ft_printf("%s \n", line);
+		ft_putstr("\033[0m");
+		ft_putstr("\033[A");
+	}
+	(*moves)++;
+}
 
 static void	ft_usage(void)
 {
@@ -22,7 +39,7 @@ static void	ft_usage(void)
 	ft_putstr("\t  -f [filename.txt] to read on a file\n");
 }
 
-char	*ft_filename(int ac, char **av, int flags, t_stack *stack)
+char		*ft_filename(int ac, char **av, int flags, t_stack *stack)
 {
 	int		i;
 
@@ -45,7 +62,6 @@ char	*ft_filename(int ac, char **av, int flags, t_stack *stack)
 static void	ft_flag_parse(char *str, int *flags, t_stack *stack)
 {
 	int		i;
-
 
 	i = 1;
 	while (str[i] != '\0')

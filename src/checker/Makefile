@@ -6,7 +6,7 @@
 #    By: oozkaya <oozkaya@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/04/26 18:33:52 by oozkaya           #+#    #+#              #
-#    Updated: 2018/05/07 16:46:20 by oozkaya          ###   ########.fr        #
+#    Updated: 2018/05/10 12:57:46 by oozkaya          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,7 +35,9 @@ LDLIBS = -lft
 SRC_NAME =	\
 			main.c\
 			ft_reader.c\
-			displayer.c
+			displayer.c\
+			displayer_init_free.c\
+			displayer_tools.c
 
 SRC_BOTH =	\
 			fill_stack.c\

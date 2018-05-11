@@ -6,7 +6,7 @@
 /*   By: oozkaya <oozkaya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/27 11:24:37 by oozkaya           #+#    #+#             */
-/*   Updated: 2018/05/07 21:04:14 by oozkaya          ###   ########.fr       */
+/*   Updated: 2018/05/11 15:02:06 by oozkaya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,11 @@
 # define INT_MAXI 2147483647
 # define INT_MINI -2147483648
 
-#define NO_FLAG 0
-#define FLAG_C 1
-#define FLAG_F 2
-#define FLAG_L 4
-#define FLAG_V 8
+# define NO_FLAG 0
+# define FLAG_C 1
+# define FLAG_F 2
+# define FLAG_L 4
+# define FLAG_V 8
 
 typedef struct	s_elem
 {
@@ -61,7 +61,6 @@ typedef struct	s_flags
 	int		l;
 }				t_flags;
 
-
 /*
 ** Instructions
 */
@@ -89,14 +88,16 @@ void			free_stack(t_stack *stack);
 ** Main Tools
 */
 int				stack_is_sorted(t_elem *elem);
+int				stack_is_reverse_sorted(t_elem *elem);
 int				ft_stacklen(t_elem *elem);
 int				ft_tablen(char **tab);
 void			refresh_index(t_elem **elem);
 void			fill_stack(t_stack **stack, int ac, char **av, int start);
-int				ft_flag_checker(int ac, char **av, int *flags, t_stack *stack);
-char			*ft_filename(int ac, char **av, int flags, t_stack *stack);
 int				ft_reader(t_stack **stack, int flags, const t_op *tab_op,
 															char *filename);
+int				ft_flag_checker(int ac, char **av, int *flags, t_stack *stack);
+char			*ft_filename(int ac, char **av, int flags, t_stack *stack);
+void			ft_flag_c(int flags, char *line, int *moves);
 
 /*
 ** Solvers

@@ -6,7 +6,7 @@
 /*   By: oozkaya <oozkaya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/03 12:02:18 by oozkaya           #+#    #+#             */
-/*   Updated: 2018/05/07 21:13:55 by oozkaya          ###   ########.fr       */
+/*   Updated: 2018/05/11 15:10:38 by oozkaya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,27 @@ static void	ft_reader_checker(t_stack **stack, const t_op *tab_op, char *line)
 		ft_error(*stack, line);
 }
 
-//static int	ft_flag_c(char *line)
+static void	ft_open_close(int *fd, t_stack *stack, char *filename, int choice)
+{
+	if (choice == 1)
+	{
+		if ((*fd = open(filename, O_RDONLY)) == -1)
+		{
+			ft_putstr_fd("Error open()\n", 2);
+			free_stack(stack);
+			exit(EXIT_FAILURE);
+		}
+	}
+	else if (choice == 2)
+	{
+		if (close(*fd) == -1)
+		{
+			ft_putstr_fd("Error close()\n", 2);
+			free_stack(stack);
+			exit(EXIT_FAILURE);
+		}
+	}
+}
 
 int			ft_reader(t_stack **stack, int flags, const t_op *tab_op,
 															char *filename)
@@ -50,23 +70,23 @@ int			ft_reader(t_stack **stack, int flags, const t_op *tab_op,
 	char	*line;
 	t_sdl	*sdl;
 
-	if (flags & FLAG_V)
-		ft_displayer_init(&sdl, *stack);
 	fd = 0;
 	if (flags & FLAG_F)
-		fd = open(filename, O_RDONLY);
+		ft_open_close(&fd, *stack, filename, 1);
+	if (flags & FLAG_V)
+		ft_displayer_init(&sdl, *stack);
 	moves = 0;
 	while (get_next_line(fd, &line) > 0)
 	{
 		ft_reader_checker(stack, tab_op, line);
+		ft_flag_c(flags, line, &moves);
 		if ((flags & FLAG_V) && !sdl->quit)
 			ft_display(&sdl, *stack);
 		ft_memdel((void**)&line);
-		moves++;
 	}
 	ft_memdel((void**)&line);
 	if (flags & FLAG_F)
-		close(fd);
+		ft_open_close(&fd, *stack, filename, 2);
 	if (flags & FLAG_V)
 		ft_displayer_free(sdl);
 	return (moves);

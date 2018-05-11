@@ -6,7 +6,7 @@
 /*   By: oozkaya <oozkaya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/19 16:28:21 by oozkaya           #+#    #+#             */
-/*   Updated: 2018/05/03 16:43:28 by oozkaya          ###   ########.fr       */
+/*   Updated: 2018/05/11 15:00:53 by oozkaya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,20 @@ int		stack_is_sorted(t_elem *elem)
 	while (tmp->next)
 	{
 		if (tmp->nbr >= tmp->next->nbr)
+			return (0);
+		tmp = tmp->next;
+	}
+	return (1);
+}
+
+int		stack_is_reverse_sorted(t_elem *elem)
+{
+	t_elem	*tmp;
+
+	tmp = elem;
+	while (tmp->next)
+	{
+		if (tmp->nbr <= tmp->next->nbr)
 			return (0);
 		tmp = tmp->next;
 	}

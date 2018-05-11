@@ -6,7 +6,7 @@
 /*   By: oozkaya <oozkaya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/03 11:30:42 by oozkaya           #+#    #+#             */
-/*   Updated: 2018/05/03 18:50:46 by oozkaya          ###   ########.fr       */
+/*   Updated: 2018/05/11 15:01:03 by oozkaya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,17 @@
 static int	ft_beforelast_last(t_stack **stack, int *before, int *last)
 {
 	t_elem	*tmp;
+	int		found;
 
+	found = 0;
 	tmp = (*stack)->a;
 	while (tmp)
 	{
-		if (!*before && tmp->next->next == NULL)
+		if (!found && tmp->next->next == NULL)
+		{
 			*before = tmp->nbr;
+			found = 1;
+		}
 		if (tmp->next == NULL)
 			*last = tmp->nbr;
 		tmp = tmp->next;
@@ -87,28 +92,40 @@ static void	ft_sort_3(t_stack **stack, int size)
 		swap_arg(stack, "sa", 1);
 }
 
-static int	stack_is_reverse_sorted(t_elem *elem)
+static void	ft_sort_5(t_stack **stack)
 {
-	t_elem	*tmp;
+	int		min;
+	int		len;
 
-	tmp = elem;
-	while (tmp->next)
+	while ((len = ft_stacklen((*stack)->a)) > 2)
 	{
-		if (tmp->nbr <= tmp->next->nbr)
-			return (0);
-		tmp = tmp->next;
+		min = ft_find_min((*stack)->a, len);
+		if ((*stack)->a->nbr == min)
+			push_arg(stack, "pb", 1);
+		if (find_best_rotate((*stack)->a, min, len) == 1)
+			rotate_arg(stack, "ra", 1);
+		else if (find_best_rotate((*stack)->a, min, len) == 2)
+			reverse_rotate_arg(stack, "rra", 1);
 	}
-	return (1);
+	if ((*stack)->a->nbr > (*stack)->a->next->nbr)
+		swap_arg(stack, "sa", 1);
+	while ((*stack)->b)
+		push_arg(stack, "pa", 1);
 }
 
 int			low_part_sort(t_stack **stack, int size)
 {
-	ft_swap_or_not(stack);
+	if (size == 5)
+	{
+		ft_sort_5(stack);
+		return (1);
+	}
 	if (size <= 3)
 	{
 		ft_sort_3(stack, size);
 		return (1);
 	}
+	ft_swap_or_not(stack);
 	if (size > 10)
 		return (0);
 	if (!stack_is_reverse_sorted((*stack)->a))
