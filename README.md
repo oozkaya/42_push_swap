@@ -89,15 +89,17 @@ Mon push_swap :
     - -c pour afficher l'instruction en cours sur le terminal
     - -f [filename.txt] pour lire depuis un fichier
 
+---
+
 * **Visualisateur** :
 
-**Entrée (numpad)** : play
+    - **Entrée (numpad)** : play
 
-**Espace** : pause
+    - **Espace** : pause
 
-**Flèche droite**: avance de 1 instruction
+    - **Flèche droite**: avance de 1 instruction
 
-**Vitesse 1-6 (numpad)**: 1 etant le plus lent, 6 le plus rapide
+    - **Vitesse 1-6 (numpad)**: 1 etant le plus lent, 6 le plus rapide
 
 ---
 
