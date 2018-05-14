@@ -86,7 +86,9 @@ Mon push_swap :
 
 * **Options** :
 > -v pour utiliser le visualisateur
+
 > -c pour afficher l'instruction en cours sur le terminal
+
 > -f [filename.txt] pour lire depuis un fichier
 
 * **Visualisateur** :
