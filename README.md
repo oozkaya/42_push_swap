@@ -107,13 +107,14 @@ Mon push_swap :
 
 ## Utilisation
 
+
 > $> git submodule init
 
 > $> git submodule update
 
-puis :
-
 > $> make
+
+puis :
 
 > $> ARG=`ruby -e "puts (0..500).to_a.shuffle.join(' ')"` | ./push_swap $ARG | ./checker -v $ARG
 
