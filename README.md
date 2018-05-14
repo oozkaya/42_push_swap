@@ -100,6 +100,8 @@ Mon push_swap :
     - **Flèche droite**: avance de 1 instruction
 
     - **Vitesse 1-6 (numpad)**: 1 etant le plus lent, 6 le plus rapide
+    
+[![https://gyazo.com/784697b3ca0232e28a4dbddb0b40746a](https://i.gyazo.com/784697b3ca0232e28a4dbddb0b40746a.gif)](https://gyazo.com/784697b3ca0232e28a4dbddb0b40746a)
 
 ---
 
