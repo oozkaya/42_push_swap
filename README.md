@@ -94,8 +94,11 @@ Mon push_swap :
 * **Visualisateur** :
 
 **Entrée (numpad)** : play
+
 **Espace** : pause
+
 **Flèche droite**: avance de 1 instruction
+
 **Vitesse 1-6 (numpad)**: 1 etant le plus lent, 6 le plus rapide
 
 ---
@@ -112,6 +115,8 @@ puis :
 
 > $> make
 
-> $> make test     (ou 'make test FLAGS=no' pour les undefined behavior)
+> $> ARG=`ruby -e "puts (0..500).to_a.shuffle.join(' ')"` | ./push_swap $ARG | ./checker -v $ARG
 
-> $> ./a.out
+ou :
+
+> $> sh analyser.sh
