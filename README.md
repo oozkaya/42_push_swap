@@ -74,22 +74,20 @@ Mon push_swap :
 ## Bonus :
 
 * **Usage PUSH_SWAP**:
-> ./push_swap [options] [arg1] [arg2] ...
+  - ./push_swap [options] [arg1] [arg2] ...
 
 * **Options** :
-> -f [filename.txt] pour écrire sur un fichier
+  - -f [filename.txt] pour écrire sur un fichier
 
 ---
 
 * **Usage CHECKER**:
-> ./checker [options] [arg1] [arg2] ...
+  - ./checker [options] [arg1] [arg2] ...
 
 * **Options** :
-> -v pour utiliser le visualisateur
-
-> -c pour afficher l'instruction en cours sur le terminal
-
-> -f [filename.txt] pour lire depuis un fichier
+  - -v pour utiliser le visualisateur
+  - -c pour afficher l'instruction en cours sur le terminal
+  - -f [filename.txt] pour lire depuis un fichier
 
 * **Visualisateur** :
 
